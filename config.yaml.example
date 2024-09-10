@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+line:
+  api_endpoint: "https://notify-api.line.me/api/notify"
+  token: "YOUR_LINE_NOTIFY_TOKEN"
