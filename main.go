@@ -114,6 +114,7 @@ func webhookHandler(w http.ResponseWriter, r *http.Request, notifier *LineNotifi
 	}
 
 	message := fmt.Sprintf("Watchtower Update: %s", messageContent)
+	fmt.Println(message)
 	err = notifier.SendLineNotification(message)
 	if err != nil {
 		http.Error(w, "Error sending LINE notification", http.StatusInternalServerError)
