@@ -96,8 +96,7 @@ line:
 2. Configure Watchtower to send notifications to your webhook URL. Add the following environment variables to your Watchtower container:
 
    ```
-   -e WATCHTOWER_NOTIFICATIONS=http
-   -e WATCHTOWER_NOTIFICATION_URL="http://your-webhook-url:8080/webhook"
+   -e WATCHTOWER_NOTIFICATION_URL=generic+http://your-webhook-url:8080/webhook
    ```
 
    Replace `your-webhook-url` with the actual URL or IP address where your Watchtower LINE Notifier is running.
