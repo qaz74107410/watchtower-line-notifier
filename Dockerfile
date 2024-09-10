@@ -14,7 +14,7 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o srv main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o watchtower-line-notifier .
 
 # Start a new stage from scratch
 FROM alpine:latest  

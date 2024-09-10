@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -98,20 +97,23 @@ func webhookHandler(w http.ResponseWriter, r *http.Request, notifier *LineNotifi
 		return
 	}
 
+	// Read the raw body
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Error reading request body", http.StatusInternalServerError)
 		return
 	}
+	defer r.Body.Close()
 
-	var payload WatchtowerPayload
-	err = json.Unmarshal(body, &payload)
-	if err != nil {
-		http.Error(w, "Error parsing JSON", http.StatusBadRequest)
-		return
+	// Convert body to string
+	messageContent := string(body)
+
+	// You might want to limit the message length to avoid very large messages
+	if len(messageContent) > 1000 {
+		messageContent = messageContent[:1000] + "... (message truncated)"
 	}
 
-	message := fmt.Sprintf("Watchtower Update: %s", payload.Text)
+	message := fmt.Sprintf("Watchtower Update: %s", messageContent)
 	err = notifier.SendLineNotification(message)
 	if err != nil {
 		http.Error(w, "Error sending LINE notification", http.StatusInternalServerError)
