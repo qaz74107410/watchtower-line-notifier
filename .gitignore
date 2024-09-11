@@ -19,9 +19,9 @@ go.work
 # Dependency directories
 vendor/
 
-# Go modules
-go.sum
-go.mod
+# # Go modules
+# go.sum
+# go.mod
 
 # IDE specific files
 .vscode/
