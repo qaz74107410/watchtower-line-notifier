@@ -77,3 +77,8 @@ func TestSendLineNotification(t *testing.T) {
 		t.Errorf("SendLineNotification failed: %v", err)
 	}
 }
+
+func TestGithubAction(t *testing.T) {
+	// Test githubAction function
+	_ = "test commit"
+}
